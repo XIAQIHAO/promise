@@ -1,0 +1,91 @@
+node核心概念
+非阻塞I/O：
+你的程序在做其他事情时发起一个请求来获取网络资源，然后当网络操作完成时，将会运行一个回调函数来处理这个操作结果。
+优势：
+node程序由事件循环开始到事件循环结束，所有的逻辑都是事件的回调函数，入口程序就是事件循环第一个事件的回调函数。所以node总是在事件循环中。
+事件函数执行的过程中，可能会发出io请求或者直接发射事件，处理完事件后返回一个事件循环，事件循环会检查事件队列有没有未处理的事件，知道程序结束
+
+模块的导入和导出
+1.node采用的commonjs的模块系统，导入模块用的是require全局函数，导入模块用的是module.exports的方式。
+2.require方法导入本地的某个文件，一定要加上盘符前缀(即便是在同一目录下)
+
+模块的缓存
+第一次加载某个模块时，node会缓存对应的模块，当下次加载该模块时，就直接从缓存中取出module.exports属性
+
+Path模块
+1.path.join方法用于连接路径。该方法的主要用途在于，会正确使用当前系统的路径分隔符
+__dirname:当前文件所在的目录(绝对路径)
+__filename:当前文件所在的目录+文件名称(绝对路径)	
+
+2.path.reslove()方法用于将相对路径转为绝对路径
+
+3.path.relative()两个参数第二路径相对于第一个路径的那个相对路径
+
+4.path.parse()返回路径各部分信息
+
+Url模块
+url的创建 let {URL} = require（'url'）
+url解析  let newurl = new URL('url地址')
+
+queryString模块 
+parse() 解析查询字符 字符串转对象
+stringify 对象转字符串	
+
+buffer模块是Node处理二进制数据的一个接口
+
+buffer值的存取操作
+
+ajax请求数据
+new一个XMLHttpRequest()对象。
+使用open方法初始化一个请求method： url：
+调用send发送http请求
+onreadystatechange监听状态发生变化触发回调函数，针对不同的响应状态进行处理
+readyState：XMLHttpRequest的状态。从0到4
+status：状态码
+
+ajax实例之跨域请求
+跨域的原因：url 域名、协议、端口号不一致
+解决跨域问题
+cors：跨域资源共享
+响应头Access-Control-Allow-Origin
+本次请求就可以成功
+跨域能否成功，取决于对方服务器是否愿意给你设置一个正确的Access-Control-Allow-Origin，决定权始终在对方手中。
+
+
+express框架
+1.使用express
+引入express
+创建应用
+监听路由
+res.send  返回一个字符串
+res.sendFile 返回一个文件
+
+get、post、use监听不同的请求
+
+2.中间件 在所有请求处理前，可以做一些操作。例如前端传来数据，对数据进行处理
+.use
+对于res、req的数据进行一些处理，
+next（）表示处理完成执行下一步
+吧 app.use  抽取出来 单独管理 require（）module.exports  模块化处理
+
+其实所有路由监听都可以是一个中间件 next（）
+
+3、子路由
+app.use("/teacher",require('...'))
+
+let router = express.Router();
+
+router.get("/")
+vue和react/小程序
+vue做h5移动端项目 混合app
+react做后台管理系统
+做平安员工内部服务平台系统 行政，人事，福利平台这样子
+项目组20多个人 前端6个 后端多一些
+上班地点：平安金融中心
+
+1、负责产险人事行政部门数据化转型项目-工作台承载系统开发 
+2、主动参与业务及系统功能的架构与组件代码编写，开发与维护系统功能及业务功能；
+ 3、主动负责并参与线上系统部署、维护、性能监控、服务器优化工作； 
+4、分析系统瓶颈，解决各种疑难杂症，对系统进行性能调优； 
+5、主动参与技术分享和交流
+

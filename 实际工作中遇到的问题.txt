@@ -1,0 +1,17 @@
+1.在我们的实际工作中，列表的数据往往都是异步获取的，因此我们初始化 better-scroll 的时机需要在数据获取后，代码如下：
+created() {
+      requestData().then((res) => {
+        this.data = res.data
+        this.$nextTick(() => {
+          this.scroll = new Bscroll(this.$refs.wrapper, {})
+        })
+      })
+    }
+2.移动端1px的问题
+
+3.Vue中注册在router-link上事件无效解决方法
+
+4.vue-router中 linkActiveclass
+如果就这样，那么会出现一个问题，不管跳转到哪里，跳转到根目录的那个连接（to="/"）  始终都会有选中样式
+1、直接在路由js文件中配置linkActiveClass 为 linkExactActiveClass
+2、在router-link中写入exact

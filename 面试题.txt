@@ -1,0 +1,173 @@
+html和css面试题
+1.性能的优化
+减少http请求
+减少dom操作
+优化css选择器 书写规范
+用字体图标和雪碧图
+js文件放在body里面
+
+2.BFC块级格式上下文
+相当于是一个隔离外界的容器，容器里面的元素布局不会影响容器外的元素位置。
+我们在float浮动的时候，overflow：不为visable、定位position触发BFC。
+当因为浮动影响父元素高度塌陷的时候，我们一般在元素后面加一个伪元素用于清除浮动，这一块运用到了bfc
+float的值不为none
+overflow的值hidden
+display的值为inline-block、table-cell、table-caption
+position的值为absolute或fixed
+
+3.display、visility、opacity的区别
+display 设置元素在页面显示或者不显示 不在页面上占据位置，绑定的事件和hover无效。transtion不支持过渡
+visility 设置元素在页面上显示或者隐藏 在页面上占据位置，绑定的事件和hover无效。transition支持hidden
+opacity 元素的透明度 为0时 元素会隐藏起来，占据位置，hover，绑定事件有效。tansition支持
+4.css水平垂直居中
+定位
+flex
+js
+5.雪碧图是什么 ？有什么优缺点？
+精灵图是一种网页图片的应用技术，它把所有图片都整合到一张图片上，再利用background-position进行图片定位，
+优点是有效的减少了http请求，减少了图片的字节，缺点是合成比较麻烦，需要精准定位
+6.H5新增标签
+结构标签：header、section、nav、aside、article、footer 
+表单标签：email：输入邮件   url：输入url地址   number：输入数值   color：颜色
+媒体标签:audio 音频  video视频 
+进度条 progress 
+mark高亮文字
+7.html标签语义化的理解
+语义化标签有 header nav main section footer
+页面布局结构清晰，利于开发和维护
+有利于seo搜索引擎获取页面信息，增加网页权重
+8.什么是回流和重绘
+回流是指页面上的元素  尺寸、布局方式的变化、添加或者删除 渲染树会重新构建
+重绘是指页面上的元素的外观风格发生变化 而不影响布局 例如background-color 会发生重绘
+回流一定会导致重绘  重绘不一定会引起回流。
+
+
+Vue面试题目：
+1.vue生命周期特性
+
+2.v-show和v-if得区别
+
+3.keep-alive的作用
+在频繁切换组件的时候，我们会想把一些组件的状态进行缓存，用keep-alive包裹组件标签，在组件第一次创建的时候就缓存下来，这样就不会让组件在页面上反复重新渲染，降低性能消耗
+组件生命周期不会经历created 在ceated的操作用的来代替
+
+2.computed和watch 的区别
+computed监听data数据得变化，重新计算，返回一个值，她是基于响应式依赖进行缓存的，如果响应式依赖发生变化，那么computed会重新计算数据返回结果。
+那么意味着data中的数据依赖没有发生变化我们多次访问computed只会返回上一次计算的值，不会重复执行函数。
+watch是监听数据的变化做出相应的操作，支持异步操作，例如我们监听路由参数的变化，是a根据参数发起ajax异步请求的最好时机。
+
+3.v-for 中 key值的作用
+key的作用是更加高效的更新虚拟dom.
+vue在渲染过程中判断两个节点是否是同一节点key是必要条件，当渲染一组列表时，key是元素的唯一标识
+如果不定义key的话vue只能认为比较的两个节点是相同的，这导致频繁的更新dom元素，渲染效率低，消耗性能
+我们在实际应用中应该避免把数组索引作为key值，可能会有隐蔽的bug。在使用相同标签元素实现属性过渡切换的时候也用到key属性，为了区分他们
+
+3.如何获取dom
+
+4.v-model是怎么实现的
+可以绑定一个动态值到视图，同时视图的变化会改变该值
+用:value和@input也可以实现
+v-model省去了我们大量数据同步设置环节，提高开发效率
+在实际开发中常用于表单控件
+
+5.vue响应式原理
+Vue 的响应式是通过数据劫持和发布者订阅的方式来实现的·数据和视图的状态同步， 
+其核心是ES5 的对象方法的Object.defindeProperty 中的访问器属性中的 get 和 set 方法，
+data 中声明的属性都被添加了访问器属性，
+当读取 data 中的数据时自动调用 get 方法，当修改 data 中的数据时，自动调用 set 方法
+
+5.data为什么是一个函数
+data数据以函数返回值的形式定义，这样每次复用组件的时候，都会返回一份新的data
+相当于每个组件实例都有自己私有的数据空间，它们只负责各自维护的数据，
+不会造成混乱。而单纯的写成对象形式，就是所有的组件实例共用了一个data，这样改一个全都改了。
+我们可以在v-for标签的父元素上添加一个v-if
+
+6.单页面得优缺点
+7.v-for和v-if得优先级
+v-for优先v-if解析
+以前做过实验，把v-for和v-if放在同一个标签里，输出的渲染函数中可以看出来先执行循环再判断条件
+如果每一次都要先遍历数组，会影响渲染速度所以他们不能再一个标签同时使用。
+我们可以在v-for的元素的父元素上添加一个v-if
+
+8.$nextTick
+在下一次数据循环更新之前执行延迟回调，在dom元素更新之后立即执行这个函数，可以获取到最新的dom元素数据。
+
+9.$route和$router的区别
+$router是vuerouter的实例，路由编程导航用$router进行跳转
+$route是当前路由跳转的对象，里面可以获取路由的name、query、params、path等
+10.路由懒加载的理解
+在router.js 用es6语法import引入组件  或者reslove引入异步组件
+在单页应用中，如果没有应用懒加载，webpack打包后的文件将会异常的大，
+造成进入首页时，需要加载的内容过多，延时过长，不利于用户体验，
+运用懒加载可以将页面进行划分，按需加载页面，可以分担首页加载的压力，减少加载用时。
+11.vue路由的钩子函数。
+全局前置守卫  beforeEach  每一个路由每次发生改变的时候都会执行一次
+应用场景：可进行页面跳转前处理，判断是否登录，是否携带token
+路由独享守卫 直接在routes规则中在指定的路由里定义beforeEach
+只有在即将进入指定的路由之前做处理。
+组件内的守卫
+ beforeRouteEnter
+在渲染该组件的对应路由被确认跳转之前调用。
+获取不到this实例
+守卫执行前，组件实例没被创建。
+beforeRouteUpdate 
+在当前路由改变，但是该组件被复用时调用
+对于带有动态参数的路由，路由的改变只有参数发生变化。
+由于会渲染同样的组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用
+可以访问this实例
+beforeRouteLeave
+导航离开该组件的对应路由时调用
+可以访问组件实例 `this`
+
+
+js面试题目
+1.js有几种数据类型
+基本数据类型：string、number、boolean、undefined、null、symbol
+引用类型：array、object、function
+2.null和undefined的区别
+null是指我们定义了一个变量并赋值为null，表示尚未存在的对象，意味着后续定义的是一个对象，在写定时器的时候，一般就是声明一个变量并赋值为null
+后续把这个变量赋值给一个定时器，并且控制定时器的开关。typeof出来是一个object 数值转化为0
+undefined是指我们声明了一个变量但是没有给这个变量赋值，显示未定义，typeof出来还是undefined 数值转化为NaN
+3.typof和instanceof作用和区别
+typeof 判断一个变量是什么数据类型 返回一个字符串，例如string、undefined、object、function等
+instanceof 判断一个变量是否是某个对象的实例 返回一个布尔值
+当然 Object.prototype.toString.call()可以检测所有的数据类型
+4.闭包的理解
+函数之间通过作用域链相互关联起来，函数内部有权访问另一个函数作用域的变量，这个变量会永远储存在内存中
+函数引用另一个函数的变量，导致这个变量无法销毁，过多的应用闭包，会导致内存泄漏
+5.创建对象的方式
+对象字面量
+new一个构造函数
+object.create() 创建对象
+6.this的指向
+全局函数下this执行全局对象windows
+谁调用这个函数this就指向谁
+箭头函数this执行函数创建时所指的对象
+7.mouseenter和mouseover的区别
+mouseover是在事件冒泡时触发，鼠标移到父元素或子元素，都会触发事件 对应mouseout
+mouseenter只有鼠标移到被选中元素才会触发事件，对应mouseleave
+8.cookies、sessionStorage、localStorage的区别
+大小：sessionStorage 和 localStorage 可以达到 5M 或更大，比 cookie 不超过4k。
+有效性：sessionStorage：当前浏览器窗口关闭前有效 localStorage：始终有效 cokie：只在设置的过期时间前一直有效
+作用域：cookie 在浏览器和服务器间来回传递。 sessionStorage 和 localStorage 不会自动把数据发给服务器，仅在本地保存
+9.函数防抖和节流
+节流：指定在一个时间内，只执行一次函数
+监听窗口
+防抖：触发函数间隔超过规定时间间隔，执行一次函数
+搜索
+10.什么是深拷贝和浅拷贝
+把A拷贝给B，当B的属性改变导致A的属性改变，在拷贝的过程中复制了值的储存地址，他们的值指向同一引用地址，B浅拷贝A
+实现浅拷贝的方法	
+直接赋值
+Object.assign
+深拷贝
+把A拷贝给B，B的属性的变化不会导致A的属性的变化，在拷贝过程中，B又开辟了一个新的堆内存地址，A\B的值指向不同的堆内存地址。B深拷贝A
+递归赋值
+JSON.parse()和JSON.stringify
+
+
+
+
+
+
+

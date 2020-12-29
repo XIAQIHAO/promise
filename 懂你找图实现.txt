@@ -1,0 +1,37 @@
+一.项目搭建
+用脚手架搭建项目
+1.全局安装脚手架 npm i -g@vue/cli
+2.创建项目 vue create -p dclound/uni-preset-vue 项目名称
+3.启动项目 npm run dev:mp-weixin
+
+二.样式准备
+1.初始化全局样式
+2.npm i node-sass loader-sass 下载sass 在style中lang=“scss”
+3.引入字体图标(static)
+
+三.划分模块
+首页、横屏、精美视频、搜索、我的 导航模块
+技术点：
+(1)在pages下新建文件，在paegs.json中申明路径。
+(2)在tarBar的List填写这四个模块的信息。
+
+首页模块   
+(1)搭建首页模块的子页面（推荐、分类、最新、专辑）技术点：使用uni-ui的分段器
+(2)封装request异步请求放在untils  返回一个Promise对象 在reslove中返回数据。
+(3)获取数据 运用es6解构赋值的方法，提取数据到data，通过v-for渲染到页面，	
+(4)月份模块的数据渲染，运用monent.js代码
+(5)使用scroll-view改造容器，监听滑到底部，完成分页。（当页面滑到底部，data中获取的条数*2跳过前面获取的信息，发起请求，新的内容和原来的内容通过数组拓展运算符...合并）
+2.专辑模板
+(1)运用swiper实现轮播图
+(2)获取专辑数据 渲染页面 
+(3)点击列表传id值获取详情
+3.分类模块 分热门和最新 
+
+精美视频
+封装组件， 推荐、娱乐、最新、热门为同一组件
+在父组件中定义他们得值
+
+
+1.沟通过程顺畅，自我介绍和项目介绍流畅
+2.在项目中擅长使用springMVC、springboot、mybatis、CSS、HTML、Jquery、mysql数据库
+3.从事过面单、时效管理系统主要负责公司相关系统的设计和开发工作。

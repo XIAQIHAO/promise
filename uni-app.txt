@@ -1,0 +1,36 @@
+uni-app
+项目结构介绍
+样式和sass
+支持小程序的rpx和h5的vw\vh
+内置有sass的配置,只需要安装对应依赖级可"npm install sass-loader node-sass"
+vue组件中,在style标签上加尔u属性"<style lang="scss ">"
+
+750rpx = 屏幕宽度
+
+基本语法
+ 1.数据展示
+	在js的data中定义数据
+	在template中通过{{数据}}来显示
+	在标签的属性上通过:data-index="数据" 来使用
+
+事件
+组件
+生命周期
+
+开发方式
+用脚手架搭建项目
+1.全局安装
+npm install -g@vue/cli
+2.创建项目
+vue create -p dclound/uni-preset-vue my-project
+3.启动项目
+npm run dev:mp-weixin
+4.微信开发者工具导入项目
+
+分页功能分析
+使用scroll-viwe标签充当分页的容器
+绑定滚动条触底事件 srcolltolower
+实现分页逻辑
+
+
+

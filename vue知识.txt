@@ -1,0 +1,135 @@
+1.什么是mvvm模式
+model：数据层
+view：用户ui界面
+viewmodel：视图层
+view发生变化会自动更新到viewmodel，viewmodel发生变化会同步到view上显示，
+这种自动同步因为viewmodel的属性实现了observe观察者模式，当属性变化时触发对应的操作
+
+2.什么是vue
+vue是一个用于构建用户界面的渐进式框架，以数据为驱动，只关注视图层，通过简单的api提供高效的数据绑定和灵活的组件系统
+
+3.vue的基本特征
+轻量化：生产环境的vue可以做到30多kb，代码体积非常小，是juqery体积的几分之一。
+数据绑定：非常方便的将js控制的数据与页面上内容相互绑定，省去了我们大量同步设置环节
+指令：vue提供了内置指令和自定义指令，可以完成我们平时的业务功能
+方法拓展：vue内置的方法虽然不多，但是可以方便的可以引用第其他组件库比如element-ui、axios等等
+
+4.插值表达  {{}}
+
+5.watch监听数据变化触发回调函数
+
+6.计算属性 computed 
+
+7.计算属性与方法的区别和相同点。
+相同点：把一个函数定义为方法或者是计算属性，他们返回得结果都是一样得。
+区别：计算属性是基于响应式依赖进行缓存数据的，只在相关响应式依赖发生改变时，他们才会重新求值。这意味着，
+如果data中的数据没有发生改变，我们多次访问这个计算属性只会返回之前计算的结果，不会再次执行函数
+相比之下，调用方法将总会再次执行函数。
+
+8.基本指令 v-once v-html
+v-if和v-show的区别
+v-if表达式得值控制页面移除或者生成元素，如果表达式得值为false，那么该元素会在页面中被移除，如果为true，该元素重新插入页面。所以v-if是直接决定元素是否在页面渲染
+v-show表达式得值控制元素在页面显示或者隐藏，v-show得值是fasle 元素得display：none ，
+v-bind v-model  v-on 
+
+v-model .lazy input触发change事件才会触发数据同步 .number输入的值转为数值类型  .trim自动过滤输入的首尾空白字符
+v-on事件修饰符 .stop阻止冒泡  .prevent阻止默认事件 .capture在捕获阶段触发事件  .self在点击在元素自身时触发  .once只触发一次事件  .native触发原生事件
+
+组件通信 父组件和子组件传值，子组件和父组件的通信。
+动态组件 keep-alive component :is
+异步组件	
+如果需要多次切换组件，我们想保持这些组件的状态，用keep-alive标签把组件包裹起来，当组件第一次创建实例时就进行缓存，以避免组件反复重新渲染导致的性能问题
+
+插槽
+父组件上面 定义插槽的内容  <template v-slot:名称>内容</template>
+子组件上给写 插槽标签 <slot name="名称"></slot>
+
+作用域插槽  把子组件的值传递到父组件的插槽  父组件v-bind:data    子组件 v-slot="随意" 作为一个对象接收
+
+组件中的内容有很多重复的模块
+
+
+
+vue动画
+单元素/组件的过渡
+在v-enter-active,v-leave-active 写过渡时间和属性名称
+在v-enter v-leave-to 写过渡的属性变化
+
+多元素/多组件的过渡
+多元素的过渡状态重叠的解决方案
+fade in-out 新元素先进行过渡，完成后当前元素过渡离开
+	out-in 当前元素过渡离开，完成后新元素进行过渡
+列表过渡
+<transtion-group><transition-group>
+
+vue的生命周期
+beforecreate 实例初始化，this指向创建的实例，不能访问data，computed，methods，watch上的方法和数据
+created 实例创建完成，此时可以访问data，watch，methods，computed上的方法和数据，不能访问$el,$ref的属性为空数组
+beforemount 在挂载开始之前被调用，实例会找到对应的template模板，并编译成render函数。
+mounted 实例已经挂载到dom上，可以通过api执行对dom的操作，$ref可以访问
+beforeupdate 响应式数据更新时调用，发生在虚拟dom打补丁之前。
+updated 数据已经重新渲染，虚拟dom打补丁之后调用，组件dom已更新，可执行依赖于dom的操作
+
+diff算法
+
+全局方法nextTick：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
+
+自定义指令 directive
+钩子函数。
+bind：指令第一次绑定到元素时触发
+inserted：被绑定元素插入父节点时触发
+update:所有组件node更新时调用
+函数参数 el 被绑定元素本身，binding 一个对象 name:指令名 value：指令的绑定值
+
+不用钩子函数直接写 默认是bind和update
+
+过滤器 filter
+vue.filter('name',function(value){
+	
+})
+	
+什么是路由
+单页面应用是基于组件和路由的，路由用于设定访问路径，并把路径和组件相互映射起来。
+传统的页面应用是用一些超链接和实现页面的切换和跳转，vue-router单页面应用则是路径的切换和组件的切换，路由模块本质是建立起url和页面的映射关系。
+	
+路由原理。
+默认是hash模式，通过onhashchange来监听hash值的变化，并作出相应的操作。
+把url中的hash值模拟成一个完成的url，当这个url改变时，页面会滚动到相应的位置，hash值的变化不会发起http请求，对后端没有任何影响，因此改变hash值不会重新加载页面
+router-link to tag
+router-view
+params
+query
+路由守卫
+编程式导航 push:跳转到不同的url，但这个方法会向history栈添加一个记录，点击后退会返回到上一个页面。
+replace:但是这个方法不会向history里面添加新的记录，点击返回，会跳转到上上一个页面。上一个记录是不存在的。
+go:相对于当前页面向前或向后跳转多少个页。
+
+vuex全局数据管理仓库	
+为什么要用vuex
+我们在vue中实现数据状态共享的时候。
+父子组件之间经常会通过props和事件来传递数据，
+兄弟组件之间会用$emit和$on eventbus事件车来实现数据共享。
+因为数据传递是单向数据流，对于多层嵌套组件之间的数据传递会很繁琐，不利于代码维护
+
+vuex的特点
+vuex的状态储存是响应式的，vue组件会在store中读取数据，如果store的状态发生变化，那么对应的组件也会高效的更新
+sotre中的状态不能直接改变，唯一能改变的方式是提交mutation
+
+state、用于存放数据，在组件中可以用辅助函数mapState在computed中声明
+getter 把store中的state进行过滤且返回过滤后的值，在组件中用辅助函数mapGetters 在computed声明
+mutation 用于设置同步数据 在组件中使用commit提交第一个参数是mutation名称，第二个是需要传递的值，
+actions 获取异步数据。
+
+vue-cli
+
+vue性能优化。
+v-if和v-for不能连用
+v-for绑定key值
+在动态组件用keep-alive
+路由懒加载
+按需引入第三方插件
+防抖节流
+客户端缓存
+
+
+

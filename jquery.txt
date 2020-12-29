@@ -1,0 +1,13 @@
+jquery的特点
+轻量化、丰富的插件、强大的选择器、封装dom操作、隐式迭代、链式编程、浏览器兼容性好
+1.jquery的选择器
+基本选择器：id、class、标签名、通配符
+层级选择器：后代、子代children、兄弟siliblings、相邻、父代（parent）、查找find（）
+过滤选择器：：last、：first、：not（）、eq、odd、even
+属性选择器：input[name='']
+eq（）、parent（）、find（）、filter（）、children（）、siblings（）
+2、css操作
+第一种：$("元素名称").css(' name') 获取第一个匹配元素的样式属性。
+
+
+
