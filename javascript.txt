@@ -277,10 +277,26 @@ trimstart trimend清除空格
 结构赋值，
 字符串转数组，
 伪数组转真数组
-
+array.from 类似于数组的对象转化为数组
+array.of（）把一组值转化为数组
+find、findindex 查找并返回符合条件的数组项或数组项索引
+遍历数组的索引、 entries、values、keys。
+数组项的判断 includes 返回布尔值 
+拉平数组 flat flatmap 先做map操作数组项 然后在拉平
 
 
 对象方法的拓展
+对象的创建 object.create()（新建对象的原型对象）
+比较两个值是否相等 object.is()
+对象的合并，把源对象进行合并，并复制到目标对象 object.assign(目标对象，源对象1,源对象2,)
+运用场景 
+1.浅拷贝
+2.为对象添加属性和方法
+3.多个对象的合并
+object.entries 名值对的遍历
+object.keys 属性名的遍历
+object.value 属性值得遍历
+
 
 
 
