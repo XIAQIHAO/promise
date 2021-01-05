@@ -4,7 +4,7 @@ dom针对于文档对象模型的api，是一个具有层次化的节点树，�
 dom获取方式
 document.getElementById() 获取唯一id
 document.getElementByClassName()获取 class名称 返回数组
-document.getElementByTagName()获取 属性名称 返回数组
+document.getElementByTagName()获取 标签名称 返回数组
 docuemnts.getElementByName()获取属性名称 返回数组
 
 3.自有属性
@@ -296,6 +296,65 @@ find、findindex 查找并返回符合条件的数组项或数组项索引
 object.entries 名值对的遍历
 object.keys 属性名的遍历
 object.value 属性值得遍历
+
+Set数据结构
+它类似于数组，但是成员的值都是唯一的，没有重复的值，set本身是一个构造函数，用来生成set数据结构
+可以接收一个数组
+用来数组项去重
+字符串的去重
+
+set的属性和方法
+构造函数是set
+size 成员数量
+操作方法
+add 在set中添加一个值
+delete 删除指定值，返回布尔值表示是否删除成功
+has set数据结构内是否包含指定值
+clear 清空所有值
+
+遍历方法
+entries keys values foreach 
+
+map数据结构
+javscript对象   实际上是一个键值对的集合，传统上只能用字符串当成键。
+map数据结构的键不仅限于字符串还可以是各种类型的值
+set设置key vlaue
+get 通过key获取value
+
+promise对象是异步编程的·一种解决方案
+promise接受一个函数作为参数，该函数的两个参数分别为reslove，reject，
+reslove函数的作用是，将promise对象的状态，从未完成变成成功 即从pending变为resloved 在异步操作成功时调用，并将异步操作的结果作为参数传递出去。
+reject函数的作用是，蒋promise对象的状态，从未完成变成失败，即从pending变成rejected，在异步操作失败后调用，并将异步操作报出的错误，作为参数传递出去。
+
+
+	
+promise的方法
+.then 方法 为promise实例状态的改变添加回调函数
+接受两个回调作为参数，第一个回调是promise对象状态为resloved调用，第二个回调是promise对象状态为reject时调用。
+
+.catch
+用于发生错误时的回调函数
+
+finally
+不管promise的状态如何都会执行finally指定的函数
+
+.all方法用于将多个 Promise 实例，包装成一个新的 Promise 实例
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
 
 
 
