@@ -43,8 +43,24 @@ mark高亮文字
 
 
 Vue面试题目：
+vue的优点
+轻量化，在生产环境下只有几十kb，是jquery是几分之一
+数据绑定：非常方便的讲js控制的数据绑定到页面的内容上，省去了我们大量同步设置环节
+内置指令：vue提供一些内置指令和自定义指令，可以完成日常业务功能
+拓展方法，虽然vue内置方法不多，但是非常方便的引入第三方插件。
+组件化：把整个页面拆分成组件来开发、实现了html的封装和重用，
+前后端分离，前端只负责页面显示，后端负责数据，分工明确，提高开发效率。
+单页面应用内容切换不会发起http请求，减少服务器压力。
+用户体验感好，内容切换快。
+后端代码可使用web多端运行。
+用虚拟dom，不用再操作dom
 1.vue生命周期特性
-
+beforecreate vue实例初始化，此时不能访问data、watch、computed、methods上的属性和方法
+created vue实例创建完成，此时可以访问data、watch、computed、methods上的属性和方法，无法访问dom节点  发起ajax请求。加载特效
+beforemouted 在实例挂在dom之前调用，实例找到对应的template模板，并编译成render函数。
+mounted dom挂载完成，可以根据api执行对dom的操作，可以通过$refs访问节点。
+beforeupdate 在数据更新时调用，发生在虚拟dom打补丁之前
+updated 在数据重新渲染到dom上时调用，发生在虚拟dom打补丁之后，dom数据更新完成可进行对dom的操作
 2.v-show和v-if得区别
 
 3.keep-alive的作用
@@ -80,9 +96,18 @@ data 中声明的属性都被添加了访问器属性，
 data数据以函数返回值的形式定义，这样每次复用组件的时候，都会返回一份新的data
 相当于每个组件实例都有自己私有的数据空间，它们只负责各自维护的数据，
 不会造成混乱。而单纯的写成对象形式，就是所有的组件实例共用了一个data，这样改一个全都改了。
-我们可以在v-for标签的父元素上添加一个v-if
 
 6.单页面得优缺点
+优点:
+前后端分离、前端负责界面显示、后端负责数据、分工明确，提高开发效率。
+减轻服务器的压力，单页面采用vuerouter，内容的改变不会发起http请求。
+内容切换快、用户体验好。
+同一套后端程序代码，可以用于多种客户端；
+缺点
+首次加载的耗时比较多
+不利于seo搜索引擎
+不可以用导航实现前进后退的效果。
+
 7.v-for和v-if得优先级
 v-for优先v-if解析
 以前做过实验，把v-for和v-if放在同一个标签里，输出的渲染函数中可以看出来先执行循环再判断条件
@@ -95,11 +120,13 @@ v-for优先v-if解析
 9.$route和$router的区别
 $router是vuerouter的实例，路由编程导航用$router进行跳转
 $route是当前路由跳转的对象，里面可以获取路由的name、query、params、path等
+
 10.路由懒加载的理解
 在router.js 用es6语法import引入组件  或者reslove引入异步组件
 在单页应用中，如果没有应用懒加载，webpack打包后的文件将会异常的大，
 造成进入首页时，需要加载的内容过多，延时过长，不利于用户体验，
 运用懒加载可以将页面进行划分，按需加载页面，可以分担首页加载的压力，减少加载用时。
+
 11.vue路由的钩子函数。
 全局前置守卫  beforeEach  每一个路由每次发生改变的时候都会执行一次
 应用场景：可进行页面跳转前处理，判断是否登录，是否携带token
@@ -125,8 +152,7 @@ js面试题目
 基本数据类型：string、number、boolean、undefined、null、symbol
 引用类型：array、object、function
 2.null和undefined的区别
-null是指我们定义了一个变量并赋值为null，表示尚未存在的对象，意味着后续定义的是一个对象，在写定时器的时候，一般就是声明一个变量并赋值为null
-后续把这个变量赋值给一个定时器，并且控制定时器的开关。typeof出来是一个object 数值转化为0
+null是指我们定义了一个变量并赋值为null，表示定义了一个空的对象，typeof出来是一个object  number转化为0
 undefined是指我们声明了一个变量但是没有给这个变量赋值，显示未定义，typeof出来还是undefined 数值转化为NaN
 3.typof和instanceof作用和区别
 typeof 判断一个变量是什么数据类型 返回一个字符串，例如string、undefined、object、function等

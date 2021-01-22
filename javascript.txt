@@ -6,6 +6,8 @@ document.getElementById() 获取唯一id
 document.getElementByClassName()获取 class名称 返回数组
 document.getElementByTagName()获取 标签名称 返回数组
 docuemnts.getElementByName()获取属性名称 返回数组
+document.querySelector('') 
+document.querySelectorAll('')
 
 3.自有属性
 元素内容属性
@@ -78,7 +80,7 @@ number转化为数字
 如果有一个操作数是字符串，调用number方法
 如果有一个操作数是对象，调用tostring方法再调用number方法
 如果是null和undefined 不用转化数据类型 他们是相等的
-如果是null
+如果是对象看是否是同源引用地址
 
 函数的创建
 1.函数声明
@@ -142,10 +144,16 @@ javascript垃圾回收处理机制
 查询{}.属性名称、{}['属性名称']，
 判断
 属性名 in {}
-{}.hasownpoperty（"属性名称"）
+对象方法
+属性检测
+object.hasownpoperty（"属性名称"）
+属性是否可枚举
+object.propertyIsEnumerable（"属性名称"）
+获取属性特性
+object.getownpropertyDescriptor({},属性名称)
+设置对象属性的特性
+object.definepeoperty({}，”属性名称“，”“)
 
-枚举检测
-{}.properEleable()
 
 对象的属性 数据属性和访问属性
 emumable  属性是否可以 通过for in 进行访问
@@ -271,7 +279,6 @@ trimstart trimend清除空格
 	
 数组方法的拓展
 拓展运算符，把一个数组拆分，数组项用逗号隔开。
-函数传参
 复制数组
 合并数组
 结构赋值，
@@ -339,6 +346,7 @@ finally
 不管promise的状态如何都会执行finally指定的函数
 
 .all方法用于将多个 Promise 实例，包装成一个新的 Promise 实例
+
 
 
 
