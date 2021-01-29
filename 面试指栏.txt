@@ -1,0 +1,9 @@
+1.自我介绍  表达出有效的信息 
+2.简历上写的东西自己要过一遍，项目上的一些东西要知道。
+3.准备html、css基础知识 常见的布局方式 flex-api、移动端适配 H5特性和css3语法
+4.准备javascript语法 面对对象 高阶函数 es6新特性 常见面试题目
+5.vue生态圈  常见面试题目
+6.jquery、bootstrap、element-ui看下
+7.微信小程序看下uniapp
+8.node语法+express mongodb
+9.git操作
